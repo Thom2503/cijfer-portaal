@@ -50,18 +50,27 @@
      require "php/config.inc.php";
 
      //sql query de where clause hoeft alleen aangepast te worden bij l.leraalID die dan automatisch bij het inloggen te doen.
-     $sql = "SELECT l.LeraarID, l.Voornaam, l.Achternaam, vl.Vak_ID, vl.Leraar_ID, v.VakNaam, v.VakID
-     from leraren as l, vak_leraar as vl, vakken as v WHERE l.LeraarID = 1 AND vl.Leraar_ID = l.LeraarID AND vl.vak_ID = v.VakID ";
+     // $sql = "SELECT l.LeraarID, l.Voornaam, l.Achternaam, vl.Vak_ID, vl.Leraar_ID, v.VakNaam, v.VakID
+     // from leraren as l, vak_leraar as vl, vakken as v WHERE l.LeraarID = 1 AND vl.Leraar_ID = l.LeraarID AND vl.vak_ID = v.VakID ";
+     $sql = "SELECT l.LeraarID, l.Voornaam, l.Achternaam, vl.Vak_ID, vl.Leraar_ID, v.VakNaam, v.VakID, vk.KlasID, vk.VakID
+     from leraren as l, vak_leraar as vl, vakken as v, vak_klas as vk
+     WHERE l.LeraarID = 1 AND vl.Leraar_ID = l.LeraarID AND vl.vak_ID = v.VakID AND vl.vak_ID = vk.VakID ";
+
 
      $result = mysqli_query($mysqli, $sql);
 
      foreach ($result as $rs)
      {
-  ?>
+       ?>
+       <div class="tab">
+         <button class="tablinks" onclick="openCity(event, '<?php echo $rs['VakNaam'] ?>')"><?php echo $rs['VakNaam'] ?></button>
+       </div>
+       <?php
+       $klas = "SELECT DISTINCT s.StudentID, s.Voornaam, s.Achternaam, s.Klas_ID, vk.KlasID
+       FROM studenten as s, vak_klas as vk WHERE s.Klas_ID = ".$rs['VakID']." AND vk.KlasID = s.Klas_ID ";
 
- <div class="tab">
-   <button class="tablinks" onclick="openCity(event, '<?php echo $rs['VakNaam'] ?>')"><?php echo $rs['VakNaam'] ?></button>
- </div>
+       $res = mysqli_query($mysqli, $klas);
+  ?>
 
  <div id="<?php echo $rs['VakNaam'] ?>" class="tabcontent">
    <h2><?php echo $rs['VakNaam'] ?></h2>
@@ -75,10 +84,16 @@
          </tr>
        </thead>
        <tbody>
-         <tr>
-         </tr>
-         <tr>
-         </tr>
+           <?php
+           foreach ($res as $klasData)
+           { ?>
+          <tr>
+           <td><?php echo $klasData['Voornaam'] ?></td>
+           <td><?php echo $klasData['Achternaam'] ?></td>
+           <td><?php echo $klasData['KlasID'] ?></td>
+           <td>6.8</td>
+          </tr>
+         <?php } ?>
        </tbody>
      </table>
  </div>
