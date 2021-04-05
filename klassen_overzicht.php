@@ -49,9 +49,7 @@
 
      require "php/config.inc.php";
 
-     // $sql = "SELECT v.VakNaam, v.VakID, l.LeraarID, l.Voornaam, l.Achternaam, vk.VakID, vk.KlasID, vl.Vak_ID, vl.Leraar_ID
-     // from vakken as v, leraren as l, vak_klas as vk, vak_leraar as vl WHERE l.LeraarID = 1 AND vl.Leraar_ID = 1  ";
-
+     //sql query de where clause hoeft alleen aangepast te worden bij l.leraalID die dan automatisch bij het inloggen te doen.
      $sql = "SELECT l.LeraarID, l.Voornaam, l.Achternaam, vl.Vak_ID, vl.Leraar_ID, v.VakNaam, v.VakID
      from leraren as l, vak_leraar as vl, vakken as v WHERE l.LeraarID = 1 AND vl.Leraar_ID = l.LeraarID AND vl.vak_ID = v.VakID ";
 
