@@ -48,6 +48,7 @@
      session_start();
 
      require "php/config.inc.php";
+     require "php/average.php";
 
      //sql query de where clause hoeft alleen aangepast te worden bij l.leraalID die dan automatisch bij het inloggen te doen.
      // $sql = "SELECT l.LeraarID, l.Voornaam, l.Achternaam, vl.Vak_ID, vl.Leraar_ID, v.VakNaam, v.VakID
@@ -70,6 +71,7 @@
        FROM studenten as s, vak_klas as vk WHERE s.Klas_ID = ".$rs['VakID']." AND vk.KlasID = s.Klas_ID ";
 
        $res = mysqli_query($mysqli, $klas);
+
   ?>
 
  <div id="<?php echo $rs['VakNaam'] ?>" class="tabcontent">
@@ -80,18 +82,19 @@
            <td>Naam</td>
            <td>Achternaam</td>
            <td>Klas</td>
-           <td>Cijfer</td>
+           <td>Cijfer (gemiddeld)</td>
          </tr>
        </thead>
        <tbody>
            <?php
            foreach ($res as $klasData)
-           { ?>
+           {
+             ?>
           <tr>
            <td><?php echo $klasData['Voornaam'] ?></td>
            <td><?php echo $klasData['Achternaam'] ?></td>
            <td><?php echo $klasData['KlasID'] ?></td>
-           <td>6.8</td>
+           <td><?php echo calculateAvg($klasData['StudentID'], $rs['VakID']) ?></td>
           </tr>
          <?php } ?>
        </tbody>
