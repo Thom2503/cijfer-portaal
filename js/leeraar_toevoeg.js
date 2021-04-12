@@ -1,10 +1,13 @@
-$(document).ready(fucntion() {
+$(document).ready(function() {
   $("#submit").click(function() {
     var leraar = $("#leraar").val();
     var vak = $("#vak").val();
 
+    console.log(leraar);
+    console.log(vak);
+
     $.ajax({
-      url: "../php/leeraar_toevoeg_verwerk.php",
+      url: "/php/leeraar_toevoeg_verwerk.php",
       method: "POST",
       data: {
         'leraar': leraar,
@@ -12,12 +15,12 @@ $(document).ready(fucntion() {
       }
     }).done(function(data) {
       if (data == "OK") {
-        window.location.href = "../klassen_overzicht.php";
+        $("#result").text("Het is goed gegaan");
       } else {
-        window.location.href = "../klassen_overzicht.php?fout=Er is iets fout gegaan";
+        $("#result").text("Er is iets fout gegaan tijdens het toevoegen!");
       }
     }).fail(function() {
-      window.alert("Er is iets fout gegaan met het verbinden met AJAX");
+      alert("Er is iets fout gegaan met het verbinden met AJAX");
     });
   });
 });

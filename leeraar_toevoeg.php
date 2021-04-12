@@ -7,7 +7,8 @@
     <script defer src="js/leeraar_toevoeg.js" charset="utf-8"></script>
   </head>
   <body>
-    <form action="leraar_toevoegen_verwerk.php" method="post">
+    <!-- <form action="php/leeraar_toevoegen_verwerk.php" method="post"> -->
+    <form action="" method="post">
       <select name="leraren" id="leraar">
           <?php
             require "php/config.inc.php";
@@ -38,5 +39,8 @@
       </select><br><br>
       <input type="submit" name="submit" id="submit" value="Leraar aan vak toevoegen">
     </form>
+    <div id="result">
+
+    </div>
   </body>
 </html>
