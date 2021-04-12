@@ -7,8 +7,7 @@
     <script defer src="js/leeraar_toevoeg.js" charset="utf-8"></script>
   </head>
   <body>
-    <!-- <form action="php/leeraar_toevoegen_verwerk.php" method="post"> -->
-    <form action="" method="post">
+    <form action="php/leeraar_toevoegen_verwerk.php" method="post">
       <select name="leraren" id="leraar">
           <?php
             require "php/config.inc.php";

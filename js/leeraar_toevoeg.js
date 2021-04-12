@@ -14,13 +14,7 @@ $(document).ready(function() {
         'val': vak
       }
     }).done(function(data) {
-      if (data == "OK") {
-        $("#result").text("Het is goed gegaan");
-      } else {
-        $("#result").text("Er is iets fout gegaan tijdens het toevoegen!");
-      }
-    }).fail(function() {
-      alert("Er is iets fout gegaan met het verbinden met AJAX");
+      console.log("Data is toegevoegd");
     });
   });
 });
