@@ -100,6 +100,18 @@
          <?php } ?>
        </tbody>
      </table>
+     <table border="1">
+         <thead>
+           <tr>
+             <td>Klascijfer (gemiddeld)</td>
+           </tr>
+         </thead>
+         <tbody>
+           <tr>
+             <td><?php echo calculateAvgClass($rs['KlasID'], $rs['Vak_ID']) ?></td>
+           </tr>
+         </tbody>
+       </table>
      <button type="button" id="print_to_pdf" name="button">Download cijfers</button>
  </div>
  <?php
@@ -122,7 +134,7 @@
 
  document.getElementById('print_to_pdf').onclick = function () {
   var element = document.getElementsByTagName('body')[0]
-  html2pdf().from(element).toPdf().save('my_document.pdf')
+  html2pdf().from(element).toPdf().save('cijfers.pdf')
 }
  </script>
 
