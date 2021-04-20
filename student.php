@@ -38,8 +38,9 @@
               </tr>
             </thead>
             <tbody>
+              <!-- Om de laatste cijfers te kunnen krijgen van de student -->
               <?php $sqli = "SELECT DISTINCT c.Vak_ID, c.Cijfer, s.StudentID, v.VakNaam
-              FROM cijfer as c, studenten as s, vakken as v WHERE s.StudentID = 1 AND c.Student_ID = 1 ORDER BY c.Vak_ID ASC  ";
+              FROM cijfer as c, studenten as s, vakken as v WHERE s.StudentID = 1 AND c.Student_ID = 1  ";
               $rs = mysqli_query($mysqli, $sqli);
               foreach($rs as $rij)
               {
@@ -55,6 +56,28 @@
             <?php } ?>
             </tbody>
           </table>
+          <table border="1">
+              <thead>
+                <tr>
+                  <td>Vak</td>
+                  <td>Cijfer (gemiddeld)</td>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Om het gemiddelde cijfer te krijgen van elk vak -->
+                <?php $sqlC = "SELECT DISTINCT Cijfer, Vak_ID, Student_ID, VakNaam FROM cijfer, vakken WHERE Student_ID = 1  ";
+                $resultaat = mysqli_query($mysqli, $sqlC);
+
+                foreach($resultaat as $r)
+                {
+                 ?>
+                <tr>
+                  <td><?php echo $r['VakNaam'] ?></td>
+                  <td><?php echo calculateAvgClass($row['StudentID'], $row['VakID']); ?></td>
+                </tr>
+              </tbody>
+              <?php } ?>
+            </table>
         <?php
       }
      ?>
