@@ -28,7 +28,7 @@
     return $uitkomst; //laat het zien
   }
 
-  function calculateAvgClass($id, $vakId) //$id is die van de student en $vakId spreekt voor zich
+  function calculateAvgClass($id, $vakId) //$id is die van de klas en $vakId spreekt voor zich
   {
     require "config.inc.php";
 
