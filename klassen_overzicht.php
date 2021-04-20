@@ -2,6 +2,7 @@
  <html>
  <head>
  <meta name="viewport" content="width=device-width, initial-scale=1">
+ <script src="https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
  <style>
  body {font-family: Arial;}
 
@@ -99,6 +100,7 @@
          <?php } ?>
        </tbody>
      </table>
+     <button type="button" id="print_to_pdf" name="button">Download cijfers</button>
  </div>
  <?php
 }
@@ -117,6 +119,11 @@
    document.getElementById(tabName).style.display = "block";
    evt.currentTarget.className += " active";
  }
+
+ document.getElementById('print_to_pdf').onclick = function () {
+  var element = document.getElementsByTagName('body')[0]
+  html2pdf().from(element).toPdf().save('my_document.pdf')
+}
  </script>
 
  </body>
