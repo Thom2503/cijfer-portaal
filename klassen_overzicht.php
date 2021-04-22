@@ -2,7 +2,7 @@
  <html>
  <head>
  <meta name="viewport" content="width=device-width, initial-scale=1">
- <script src="https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
+ <script defer src="https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
  <style>
  body {font-family: Arial;}
 
@@ -61,6 +61,11 @@
 
      $result = mysqli_query($mysqli, $sql);
 
+     if (!$result)
+     {
+       echo "Error";
+     }
+
      foreach ($result as $rs)
      {
        ?>
@@ -68,8 +73,8 @@
          <button class="tablinks" onclick="openTab(event, '<?php echo $rs['VakNaam'] ?>')"><?php echo $rs['VakNaam'] ?></button>
        </div>
        <?php
-       $klas = "SELECT DISTINCT s.StudentID, s.Voornaam, s.Achternaam, s.Klas_ID, vk.KlasID
-       FROM studenten as s, vak_klas as vk WHERE s.Klas_ID = ".$rs['VakID']." AND vk.KlasID = s.Klas_ID ";
+       $klas = "SELECT DISTINCT s.StudentID, s.Voornaam, s.Achternaam, s.Klas_ID, vk.KlasID, k.KlasNaam
+       FROM studenten as s, vak_klas as vk, klassen as k WHERE s.Klas_ID = ".$rs['VakID']." AND vk.KlasID = s.Klas_ID ";
 
        $res = mysqli_query($mysqli, $klas);
 
@@ -94,7 +99,7 @@
           <tr>
            <td><?php echo $klasData['Voornaam'] ?></td>
            <td><?php echo $klasData['Achternaam'] ?></td>
-           <td><?php echo $klasData['KlasID'] ?></td>
+           <td><?php echo $klasData['KlasNaam'] ?></td>
            <td><?php echo calculateAvg($klasData['StudentID'], $rs['VakID']) ?></td>
           </tr>
          <?php } ?>
