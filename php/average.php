@@ -25,7 +25,7 @@
 
     $uitkomst = $totaalcijfer / $delen; //MaTh!!
 
-    return $uitkomst; //laat het zien
+    return number_format($uitkomst, 1); //laat het zien
   }
 
   function calculateAvgClass($id, $vakId) //$id is die van de klas en $vakId spreekt voor zich
@@ -54,7 +54,7 @@
 
     $uitkomst = $totaalcijfer / $delen; //MaTh!!
 
-    return $uitkomst; //laat het zien
+    return number_format($uitkomst, 1); //laat het zien
   }
 
  ?>
