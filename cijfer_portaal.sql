@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Apr 26, 2021 at 12:37 PM
--- Server version: 10.4.17-MariaDB
--- PHP Version: 7.4.12
+-- Host: 127.0.0.1
+-- Generation Time: Apr 26, 2021 at 03:48 PM
+-- Server version: 10.4.14-MariaDB
+-- PHP Version: 7.3.22
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -105,6 +105,7 @@ CREATE TABLE `periode` (
 
 CREATE TABLE `studenten` (
   `StudentID` char(36) NOT NULL,
+  `StudentUUID` char(36) NOT NULL,
   `Voornaam` varchar(64) NOT NULL,
   `Achternaam` varchar(128) NOT NULL,
   `Klas_ID` int(11) NOT NULL
@@ -114,10 +115,10 @@ CREATE TABLE `studenten` (
 -- Dumping data for table `studenten`
 --
 
-INSERT INTO `studenten` (`StudentID`, `Voornaam`, `Achternaam`, `Klas_ID`) VALUES
-('1', 'Wouter', 'Oogjen', 1),
-('2', 'Jhon', 'Jhonson', 1),
-('3', 'Wouter', 'Oogjen', 2);
+INSERT INTO `studenten` (`StudentID`, `StudentUUID`, `Voornaam`, `Achternaam`, `Klas_ID`) VALUES
+('1', '57400b07-74d4-4c1f-bd35-960551fbb24c', 'Wouter', 'Oogjen', 1),
+('2', '03ccb0ef-6eeb-4c63-939b-25b2aa77e734', 'Jhon', 'Jhonson', 1),
+('3', '19cd0e3a-1a0d-4022-b93a-eac2e3ccaa3b', 'Wouter', 'Oogjen', 2);
 
 -- --------------------------------------------------------
 

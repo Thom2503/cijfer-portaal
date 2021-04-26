@@ -73,7 +73,7 @@
          <button class="tablinks" onclick="openTab(event, '<?php echo $rs['VakNaam'] ?>')"><?php echo $rs['VakNaam'] ?></button>
        </div>
        <?php
-       $klas = "SELECT DISTINCT s.StudentID, s.Voornaam, s.Achternaam, s.Klas_ID, k.KlasNaam, vk.VakID
+       $klas = "SELECT DISTINCT s.StudentID, s.StudentUUID, s.Voornaam, s.Achternaam, s.Klas_ID, k.KlasNaam, vk.VakID
        FROM studenten as s, vak_klas as vk, klassen as k
        WHERE vk.KlasID = s.Klas_ID AND vk.VakID = ".$rs['VakID']."  AND k.KlasID =".$rs['KlasID'];
 
@@ -98,7 +98,7 @@
            {
              ?>
           <tr>
-           <td><?php echo $klasData['Voornaam'] ?></td>
+           <td><a href="student.php?id=<?php echo $klasData['StudentUUID'] ?>"><?php echo $klasData['Voornaam'] ?></a></td>
            <td><?php echo $klasData['Achternaam'] ?></td>
            <td><?php echo $klasData['KlasNaam'] ?></td>
            <td><?php echo calculateAvg($klasData['StudentID'], $rs['VakID']) ?></td>

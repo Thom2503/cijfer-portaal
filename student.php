@@ -1,5 +1,8 @@
 <?php
   session_start();
+
+  $uuid = $_GET['id'];
+
   require "php/config.inc.php";
   require "php/average.php";
  ?>
@@ -8,13 +11,15 @@
   <head>
     <meta charset="utf-8">
     <title>Studentpagina</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script defer src="https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
   </head>
   <body>
 
     <?php
       $sql = "SELECT s.StudentID, s.Voornaam, s.Achternaam, c.Cijfer, k.KlasNaam, v.VakNaam, c.Vak_ID, c.Naam_Toets
       FROM studenten as s, klassen as k, cijfer as c, vakken as v
-      WHERE s.StudentID = c.Student_ID AND s.Klas_ID = k.KlasID AND v.VakID = c.Vak_ID AND s.StudentID = 1";
+      WHERE s.StudentID = c.Student_ID AND s.Klas_ID = k.KlasID AND v.VakID = c.Vak_ID AND s.StudentUUID = '$uuid'";
 
       //SELECT c.Vak_ID, c.Cijfer, v.VakNaam, c.Naam_Toets, c.Student_ID FROM cijfer as c, vakken as v
       //SELECT DISTINCT s.StudentID, s.Voornaam, s.Achternaam, k.KlasNaam FROM vakken as v, klassen as k, studenten as s WHERE s.StudentID = 1 AND k.KlasID = 1
@@ -88,5 +93,12 @@
         <?php
       }
      ?>
+     <button type="button" id="print_to_pdf" name="button">Download cijfers</button>
   </body>
+  <script type="text/javascript">
+  document.getElementById('print_to_pdf').onclick = function () {
+     var element = document.getElementsByTagName('body')[0]
+     html2pdf().from(element).toPdf().save('cijfers.pdf')
+   }
+  </script>
 </html>
