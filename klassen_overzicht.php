@@ -54,9 +54,9 @@
      //sql query de where clause hoeft alleen aangepast te worden bij l.leraalID die dan automatisch bij het inloggen te doen.
      // $sql = "SELECT l.LeraarID, l.Voornaam, l.Achternaam, vl.Vak_ID, vl.Leraar_ID, v.VakNaam, v.VakID
      // from leraren as l, vak_leraar as vl, vakken as v WHERE l.LeraarID = 1 AND vl.Leraar_ID = l.LeraarID AND vl.vak_ID = v.VakID ";
-     $sql = "SELECT l.LeraarID, l.Voornaam, l.Achternaam, vl.Vak_ID, vl.Leraar_ID, v.VakNaam, v.VakID, vk.KlasID, vk.VakID
+     $sql = "SELECT l.Voornaam, l.Achternaam, vl.Leraar_ID, v.VakNaam, vk.KlasID, vk.VakID
      from leraren as l, vak_leraar as vl, vakken as v, vak_klas as vk
-     WHERE l.LeraarID = 1 AND vl.Leraar_ID = l.LeraarID AND vl.vak_ID = v.VakID AND vl.vak_ID = vk.VakID ";
+     WHERE l.LeraarID = 1 AND vl.Leraar_ID = l.LeraarID AND vl.vak_ID = v.VakID AND vl.vak_ID = vk.VakID  ";
 
 
      $result = mysqli_query($mysqli, $sql);
@@ -73,8 +73,9 @@
          <button class="tablinks" onclick="openTab(event, '<?php echo $rs['VakNaam'] ?>')"><?php echo $rs['VakNaam'] ?></button>
        </div>
        <?php
-       $klas = "SELECT DISTINCT s.StudentID, s.Voornaam, s.Achternaam, s.Klas_ID, vk.KlasID, k.KlasNaam
-       FROM studenten as s, vak_klas as vk, klassen as k WHERE s.Klas_ID = ".$rs['VakID']." AND vk.KlasID = s.Klas_ID ";
+       $klas = "SELECT DISTINCT s.StudentID, s.Voornaam, s.Achternaam, s.Klas_ID, k.KlasNaam, vk.VakID
+       FROM studenten as s, vak_klas as vk, klassen as k
+       WHERE vk.KlasID = s.Klas_ID AND vk.VakID = ".$rs['VakID']."  AND k.KlasID =".$rs['KlasID'];
 
        $res = mysqli_query($mysqli, $klas);
 
@@ -113,7 +114,7 @@
          </thead>
          <tbody>
            <tr>
-             <td><?php echo calculateAvgClass($rs['KlasID'], $rs['Vak_ID']) ?></td>
+             <td><?php echo calculateAvgClass($rs['KlasID'], $rs['VakID']) ?></td>
            </tr>
          </tbody>
        </table>
