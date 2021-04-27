@@ -48,6 +48,11 @@
    <?php
      session_start();
 
+     if($_SESSION['LeraarID'] < 0)
+     {
+       header("location: index.php");
+     }
+
      require "php/config.inc.php";
      require "php/average.php";
 

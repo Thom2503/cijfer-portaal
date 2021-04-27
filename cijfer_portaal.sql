@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 26, 2021 at 03:48 PM
+-- Generation Time: Apr 27, 2021 at 08:13 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.3.22
 
@@ -75,6 +75,7 @@ CREATE TABLE `leraren` (
   `LeraarID` int(11) NOT NULL,
   `Voornaam` varchar(64) NOT NULL,
   `Achternaam` varchar(128) NOT NULL,
+  `GebruikersID` int(5) NOT NULL,
   `Wachtwoord` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -82,9 +83,9 @@ CREATE TABLE `leraren` (
 -- Dumping data for table `leraren`
 --
 
-INSERT INTO `leraren` (`LeraarID`, `Voornaam`, `Achternaam`, `Wachtwoord`) VALUES
-(1, 'Michiel', 'Heij', 'test1234'),
-(2, 'Leslie', 'Window', 'test1234');
+INSERT INTO `leraren` (`LeraarID`, `Voornaam`, `Achternaam`, `GebruikersID`, `Wachtwoord`) VALUES
+(1, 'Michiel', 'Heij', 86743, 'test1234'),
+(2, 'Leslie', 'Window', 67543, 'test1234');
 
 -- --------------------------------------------------------
 
@@ -108,6 +109,8 @@ CREATE TABLE `studenten` (
   `StudentUUID` char(36) NOT NULL,
   `Voornaam` varchar(64) NOT NULL,
   `Achternaam` varchar(128) NOT NULL,
+  `Gebruikersnaam` varchar(256) NOT NULL,
+  `Wachtwoord` varchar(256) NOT NULL,
   `Klas_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -115,10 +118,10 @@ CREATE TABLE `studenten` (
 -- Dumping data for table `studenten`
 --
 
-INSERT INTO `studenten` (`StudentID`, `StudentUUID`, `Voornaam`, `Achternaam`, `Klas_ID`) VALUES
-('1', '57400b07-74d4-4c1f-bd35-960551fbb24c', 'Wouter', 'Oogjen', 1),
-('2', '03ccb0ef-6eeb-4c63-939b-25b2aa77e734', 'Jhon', 'Jhonson', 1),
-('3', '19cd0e3a-1a0d-4022-b93a-eac2e3ccaa3b', 'Wouter', 'Oogjen', 2);
+INSERT INTO `studenten` (`StudentID`, `StudentUUID`, `Voornaam`, `Achternaam`, `Gebruikersnaam`, `Wachtwoord`, `Klas_ID`) VALUES
+('1', '57400b07-74d4-4c1f-bd35-960551fbb24c', 'Wouter', 'Oogjen', 'WOogjen', '2bbe0c48b91a7d1b8a6753a8b9cbe1db16b84379f3f91fe115621284df7a48f1cd71e9beb90ea614c7bd924250aa9e446a866725e685a65df5d139a5cd180dc9', 1),
+('2', '03ccb0ef-6eeb-4c63-939b-25b2aa77e734', 'Jhon', 'Jhonson', 'JJhonson', 'e6e8ba72bf2bab68c923599a08489c6f3a35018e870d490fa25b4c2a2d82361093b9a8f1d0cdd02e5a7dd5e714dc090263e2e90af3d3d861c056f28a4adb2d95', 1),
+('3', '19cd0e3a-1a0d-4022-b93a-eac2e3ccaa3b', 'Thom', 'Veldhuis', 'TVeldhuis', '437c5c5659d9d879df43747f4e100a1cca58152f31cbed7220d4308c5666beef0e636191b325878a38caabb4b9c8f696b1426d143fce12f099fd78141dcabc35', 2);
 
 -- --------------------------------------------------------
 

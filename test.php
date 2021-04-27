@@ -11,6 +11,12 @@
 
   echo uuidv4()."<br>";
   echo uuidv4()."<br>";
-  echo uuidv4();
+  echo uuidv4()."<br>";
 
+  echo hash("sha512", "test1234")."<br>";
+  echo hash("sha512", "test12345")."<br>";
+  echo hash("sha512", "sudo1234")."<br>";
+
+// 2bbe0c48b91a7d1b8a6753a8b9cbe1db16b84379f3f91fe115621284df7a48f1cd71e9beb90ea614c7bd924250aa9e446a866725e685a65df5d139a5cd180dc9
+// 86743Michiel
  ?>
