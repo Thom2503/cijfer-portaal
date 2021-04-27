@@ -48,7 +48,7 @@
    <?php
      session_start();
 
-     if($_SESSION['LeraarID'] < 0)
+     if($_SESSION['Leraar'] < 0)
      {
        header("location: index.php");
      }
@@ -61,7 +61,7 @@
      // from leraren as l, vak_leraar as vl, vakken as v WHERE l.LeraarID = 1 AND vl.Leraar_ID = l.LeraarID AND vl.vak_ID = v.VakID ";
      $sql = "SELECT l.Voornaam, l.Achternaam, vl.Leraar_ID, v.VakNaam, vk.KlasID, vk.VakID
      from leraren as l, vak_leraar as vl, vakken as v, vak_klas as vk
-     WHERE l.LeraarID = 1 AND vl.Leraar_ID = l.LeraarID AND vl.vak_ID = v.VakID AND vl.vak_ID = vk.VakID  ";
+     WHERE l.LeraarID = ".$_SESSION['Leraar']." AND vl.Leraar_ID = l.LeraarID AND vl.vak_ID = v.VakID AND vl.vak_ID = vk.VakID  ";
 
 
      $result = mysqli_query($mysqli, $sql);

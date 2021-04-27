@@ -75,6 +75,8 @@
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
 
 <?php
+session_start();
+
 require 'config.inc.php';
 
 if (isset($_POST['submit']))
@@ -92,24 +94,24 @@ if (isset($_POST['submit']))
 
         if (preg_match($regex, $username))
         {
-            $query = "SELECT * FROM leraren WHERE
-                      Wachtwoord = '$password' AND GebruikersID = '$username'";
+            $query1 = "SELECT * FROM leraren WHERE
+                      GebruikersID = '$username' AND Wachtwoord = '$password'";
                  //check connectie met de database en voer de query uit
-                 $resultaat = mysqli_query($mysqli, $query);
+                 $resultaat1 = mysqli_query($mysqli, $query1);
 
-                 if (!$resultaat)
+                 if (!$resultaat1)
                  {
                      printf("Error: %s\n", mysqli_error($mysqli));
                      exit();
                  }
 
-                 if (mysqli_num_rows($resultaat) > 0)
+                 if (mysqli_num_rows($resultaat1) > 0)
                  {
                      //pakt de user uit de database
-                     $gebruiker = mysqli_fetch_array($resultaat);
+                     $gebruiker1 = mysqli_fetch_array($resultaat1);
                      //koppelt de session aan de gebruiker
-                     $_SESSION['LeraarID'] = $gebruiker['LeraarID'];
-                     header("Location:klassen_overzicht.php?id=".$gebruker['LeraarID']);
+                     $_SESSION['Leraar'] = $gebruiker1['LeraarID'];
+                     header("Location:klassen_overzicht.php");
                  }
                  else
                  {
@@ -135,7 +137,7 @@ if (isset($_POST['submit']))
                      //pakt de user uit de database
                      $gebruiker = mysqli_fetch_array($resultaat);
                      //koppelt de session aan de gebruikersnaam
-                     $_SESSION['username'] = $gebruiker['StudentUUID'];
+                     $_SESSION['Student'] = $gebruiker['StudentUUID'];
                      header("Location:student.php?id=".$gebruiker['StudentUUID']);
                  }
                  else
