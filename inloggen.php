@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Inloggen</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <script src="https://www.google.com/recaptcha/api.js"></script>
@@ -43,10 +43,9 @@
       <div class="w3-sidebar w3-light-grey w3-bar-block" style="width:10%">
         <h3 class="w3-bar-item"></h3>
         <a href="#" class="w3-bar-item w3-button">Cijfer Toevoegen</a>
-        <a href="#" class="w3-bar-item w3-button">Overzicht Alle klassen</a>
-        <a href="#" class="w3-bar-item w3-button">Klas Toevoegen</a>
-        <a href="#" class="w3-bar-item w3-button">Klas Overzicht</a>
-        <a href="#" class="w3-bar-item w3-button">Vak Toevoegen</a>
+        <a href="klassen_overzicht.php" class="w3-bar-item w3-button">Overzicht klassen</a>
+        <a href="leeraar_toevoeg.php" class="w3-bar-item w3-button">Vak voor leraar</a>
+        <a href="vak_toevoegen.php" class="w3-bar-item w3-button">Vak Toevoegen</a>
 
 
       </div>
@@ -111,6 +110,8 @@ if (isset($_POST['submit']))
                      $gebruiker1 = mysqli_fetch_array($resultaat1);
                      //koppelt de session aan de gebruiker
                      $_SESSION['Leraar'] = $gebruiker1['LeraarID'];
+                     $_SESSION['Voornaam'] = $gebruiker1['Voornaam'];
+                     $_SESSION['Achternaam'] = $gebruiker1['Achternaam'];
                      header("Location:klassen_overzicht.php");
                  }
                  else
