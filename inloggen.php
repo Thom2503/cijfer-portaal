@@ -139,6 +139,8 @@ if (isset($_POST['submit']))
                      $gebruiker = mysqli_fetch_array($resultaat);
                      //koppelt de session aan de gebruikersnaam
                      $_SESSION['Student'] = $gebruiker['StudentUUID'];
+                     $_SESSION['Voornaam'] = $gebruiker['Voornaam'];
+                     $_SESSION['Achternaam'] = $gebruiker['Achternaam'];
                      header("Location:student.php?id=".$gebruiker['StudentUUID']);
                  }
                  else
