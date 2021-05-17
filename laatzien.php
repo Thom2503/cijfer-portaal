@@ -9,7 +9,7 @@ if (isset($_GET['toetsnaam']) && isset($_GET['klasnaam'])){
     $toetsnaam = $_GET['toetsnaam'];
     $klasnaam = $_GET['klasnaam'];
 
-    echo "Je hebt op " . $toetsnaam . " geklikt";
+    echo "<p id='toetsnaam'>Je hebt op " . $toetsnaam . " geklikt</p>";
 
     $_SESSION['NaamToets'] = $toetsnaam;
 

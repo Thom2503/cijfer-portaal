@@ -39,7 +39,7 @@ function zoekentoets()
     var zoektekst = document.getElementById('zoekbalk').value;
 
     // Maak de URL voor het AJAX request
-    var url = 'php/aanpassen_verwerk.php?zoektekst=' + zoektekst;
+    var url = 'PHP/aanpassen_verwerk.php?zoektekst=' + zoektekst;
 
     // Wat moet er gebeuren bij statuswijzigingen?
     xmlHttp.onreadystatechange = function ()
@@ -71,7 +71,7 @@ function Laatpaginaeenzien()
     document.getElementById("resultaat").innerHTML = "";
 
     // Maak de URL voor het AJAX request
-    var url = '../laatzien.php?laatpaginaeenzien=TRUE';
+    var url = 'laatzien.php?laatpaginaeenzien=TRUE';
 
     // Wat moet er gebeuren bij statuswijzigingen?
     xmlHttp.onreadystatechange = function ()
@@ -102,7 +102,7 @@ function laatpaginatweezien(toetsnaam, klasnaam){
     document.getElementById("paginaeen").innerHTML = "";
 
     // Maak de URL voor het AJAX request
-    var url = '../laatzien.php?toetsnaam=' + toetsnaam + '&klasnaam=' + klasnaam;
+    var url = 'laatzien.php?toetsnaam=' + toetsnaam + '&klasnaam=' + klasnaam;
 
     // Wat moet er gebeuren bij statuswijzigingen?
     xmlHttp.onreadystatechange = function ()
@@ -134,7 +134,7 @@ function updatecijfer(studentid){
 
     // Maak de URL voor het AJAX request
     //var url = 'laatzien.php?toetsnaam=' + toetsnaam + '&klasnaam=' + klasnaam;
-    var url = '../laatzien.php?studentid=' + studentid + '&cijfer=' + cijfer;
+    var url = 'laatzien.php?studentid=' + studentid + '&cijfer=' + cijfer;
 
     // Wat moet er gebeuren bij statuswijzigingen?
     xmlHttp.onreadystatechange = function ()
