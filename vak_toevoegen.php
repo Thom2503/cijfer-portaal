@@ -34,8 +34,8 @@ if($_SESSION['Leraar'] == 0)
 
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#about">Naam:</a></li>
-            <li><a href="#contact">Logout</a></li>
+            <li><a href="#"><?php echo $_SESSION['Voornaam']." ".$_SESSION['Achternaam'] ?></a></li>
+            <li><a href="loguit.php">Logout</a></li>
           </ul>
         </div>
       </nav>

@@ -103,7 +103,7 @@ if($_SESSION['Leraar'] == 0)
          //WHERE vl.Vak_ID = v.VakID AND vl.Leraar_ID = l.LeraarID AND l.LeraarID =".$_SESSION['Leraar'];
 		 $sql = "SELECT DISTINCT l.Voornaam, l.Achternaam, vl.Leraar_ID, v.VakNaam, vk.KlasID, vl.vak_ID
          from leraren as l, vak_leraar as vl, vakken as v, vak_klas as vk
-         WHERE vl.Vak_ID = v.VakID AND vl.Leraar_ID = l.LeraarID AND l.LeraarID = 1 AND v.VakID = vk.VakID AND l.LeraarID = ". $_SESSION['Leraar'];
+         WHERE vl.Vak_ID = v.VakID AND vl.Leraar_ID = l.LeraarID AND l.LeraarID = ".$_SESSION['Leraar']." AND v.VakID = vk.VakID AND l.LeraarID = ". $_SESSION['Leraar'];
 
 
 
