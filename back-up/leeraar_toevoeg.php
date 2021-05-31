@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if($_SESSION['Leraar'] == 0)
+if($_SESSION['Leraar'] < 0)
 {
   header("location: index.php");
 }
@@ -11,13 +11,13 @@ if($_SESSION['Leraar'] == 0)
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vak toevoegen</title>
+    <title>Leraar -> vak koppeling</title>
     <script defer src="https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="css/homepage.css">
-    <script defer src="js/vak_toevoeg.js" charset="utf-8"></script>
+    <script defer src="js/leeraar_toevoeg.js" charset="utf-8"></script>
   </head>
   <body>
     <nav class="navbar navbar-light bg-light navbar-fixed-top" role="navigation" id="navbar_top">
@@ -51,25 +51,36 @@ if($_SESSION['Leraar'] == 0)
 
       </div>
       <div class="middle" style="position: relative; top: 100px; width: 90%; margin-right: -1em;">
-        <form action="php/vak_toevoeg_verwerk.php" method="post">
-          Naam vak: <br>
-          <input type="text" name="vakNaam" id="vakNaam"> <br><br>
-          Leerlijn: <br>
-          <select name="leerlijnen" id="lerlijnen">
+        <form action="php/leeraar_toevoegen_verwerk.php" method="post">
+          <select name="leraren" id="leraar">
               <?php
                 require "php/config.inc.php";
 
-                $sql = "SELECT * FROM leerlijnen";
+                $sql = "SELECT * FROM leraren";
 
                 $result = mysqli_query($mysqli, $sql);
 
                 foreach($result as $rs)
                 {
-                  echo "<option value='".$rs['LeerlijnID']."'>".$rs['LeerlijnNaam']."</option>";
+                  echo "<option value='".$rs['LeraarID']."'>".$rs['Voornaam']." ".$rs['Achternaam']."</option>";
                 }
                ?>
           </select><br><br>
-          <input type="submit" name="submit" id="submit" value="Vak toevoegen">
+          <select name="vakken" id="vak">
+              <?php
+                require "php/config.inc.php";
+
+                $sql = "SELECT * FROM vakken";
+
+                $result = mysqli_query($mysqli, $sql);
+
+                foreach($result as $rs)
+                {
+                  echo "<option value='".$rs['VakID']."'>".$rs['VakNaam']."</option>";
+                }
+               ?>
+          </select><br><br>
+          <input type="submit" name="submit" id="submit" value="Leraar aan vak toevoegen">
         </form>
         <div id="result">
 

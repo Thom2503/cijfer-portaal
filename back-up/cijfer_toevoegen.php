@@ -2,7 +2,7 @@
 
 session_start();
 
-if($_SESSION['Leraar'] == 0)
+if($_SESSION['Leraar'] < 0)
 {
   header("location: index.php");
 }

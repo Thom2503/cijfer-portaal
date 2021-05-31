@@ -2,10 +2,6 @@
 
 require "php/config.inc.php";
 session_start();
-if($_SESSION['Leraar'] == 0)
-{
-  header("location: index.php");
-}
 
 //Pak de sessies op
 

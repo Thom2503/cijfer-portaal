@@ -4,11 +4,6 @@ require "php/config.inc.php";
 
 session_start();
 
-if($_SESSION['Leraar'] == 0)
-{
-  header("location: index.php");
-}
-
 if (isset($_GET['toetsnaam']) && isset($_GET['klasnaam'])){
 //if (isset($_GET['toetsnaam'])){
     $toetsnaam = $_GET['toetsnaam'];

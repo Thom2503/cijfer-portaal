@@ -5,10 +5,6 @@
 
   require "php/config.inc.php";
   require "php/average.php";
-  if($_SESSION['Leraar'] == 0)
-  {
-    header("location: index.php");
-  }
  ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
